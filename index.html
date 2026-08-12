@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stride — footwear for every step. Shop sneakers, formal shoes, sports shoes and kids' footwear from top brands. Free shipping over ₹999."
+    />
+    <title>Stride — Footwear for every step</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E"
+    />
+    <script>
+      /* Minimal theme boot to avoid flash — full logic in js/main.js */
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <section class="hero hero--editorial" aria-labelledby="hero-title" style="min-height: 90vh;">
+        <div class="hero__bg-media">
+          <img
+            src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1600&auto=format&fit=crop"
+            alt="Models posing in stylish footwear"
+            class="hero__bg-img"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="hero__bg-overlay" aria-hidden="true"></div>
+        </div>
+
+        <div class="hero__inner hero__inner--editorial">
+          <!-- Left Overlay Copy -->
+          <div class="hero__copy hero__copy--editorial" data-reveal>
+            <span class="hero__eyebrow-editorial">
+              <span class="hero__eyebrow-dot-white"></span>
+              Autumn / Winter '26 Collection
+            </span>
+
+            <h1 id="hero-title" class="hero__title hero__title--editorial">
+              Elevate<br />
+              Every Step.
+            </h1>
+
+            <p class="hero__lede-editorial">
+              Precision-engineered footwear blending street culture aesthetics with unmatched everyday comfort.
+            </p>
+
+            <div class="hero__ctas hero__ctas--editorial">
+              <a href="#shop" class="btn hero__btn-white">
+                Shop Collection
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href="#shop" class="btn hero__btn-glass">
+                Explore Categories
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <div class="hero__stats-editorial">
+              <div class="hero__stat-item">
+                <span class="hero__stat-val">06</span>
+                <span class="hero__stat-lbl">Premium Brands</span>
+              </div>
+              <div class="hero__stat-divider"></div>
+              <div class="hero__stat-item">
+                <span class="hero__stat-val">120+</span>
+                <span class="hero__stat-lbl">Exclusive Styles</span>
+              </div>
+              <div class="hero__stat-divider"></div>
+              <div class="hero__stat-item">
+                <span class="hero__stat-val">4.9★</span>
+                <span class="hero__stat-lbl">50k+ Reviews</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PRODUCT GRID
+           ============================================================ -->
+      <section class="catalog" aria-labelledby="catalog-title">
+        <header class="catalog__toolbar" data-reveal>
+          <h2 id="catalog-title" class="catalog__title">
+            <span data-catalog-label>All footwear</span>
+            <span class="catalog__count" data-results-count>12 styles</span>
+          </h2>
+
+          <label class="catalog__sort">
+            <span class="small-caps">Sort</span>
+            <select data-sort>
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </label>
+        </header>
+
+        <div class="product-grid" data-product-grid aria-live="polite">
+          <!-- Cards rendered by script.js -->
+        </div>
+
+        <p class="catalog__empty" data-empty hidden>
+          No products in this category yet. Try another filter.
+        </p>
+      </section>
+
+      <!-- ===============================================================
+           BRANDS
+           ============================================================ -->
+      <section id="brands" class="brands-strip" aria-labelledby="brands-title">
+        <header class="brands-strip__header" data-reveal>
+        </header>
+
+        <ul class="brands-list" role="list" data-reveal>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 160 36" width="160" height="36" aria-label="Nike">
+              <text x="80" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-style="italic" font-weight="800" font-size="26" fill="currentColor">NIKE</text>
+            </svg>
+          </li>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 160 36" width="160" height="36" aria-label="Adidas">
+              <text x="80" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" letter-spacing="4" font-size="22" fill="currentColor">ADIDAS</text>
+            </svg>
+          </li>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 160 36" width="160" height="36" aria-label="Clarks">
+              <text x="80" y="26" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="26" fill="currentColor">Clarks</text>
+            </svg>
+          </li>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 160 36" width="160" height="36" aria-label="Asics">
+              <text x="80" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" letter-spacing="3" font-size="22" fill="currentColor">ASICS</text>
+            </svg>
+          </li>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 180 36" width="180" height="36" aria-label="New Balance">
+              <text x="90" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="20" fill="currentColor">new balance</text>
+            </svg>
+          </li>
+          <li class="brands-list__item">
+            <svg viewBox="0 0 160 36" width="160" height="36" aria-label="Puma">
+              <text x="80" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="26" fill="currentColor">PUMA</text>
+            </svg>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===============================================================
+           PROMO STRIP
+           ============================================================ -->
+      <section class="promo-strip" aria-label="Newsletter signup">
+        <div class="promo-strip__inner" data-reveal>
+          <div class="promo-strip__copy">
+            <span class="small-caps promo-strip__eyebrow">Newsletter</span>
+            <h2 class="promo-strip__title">Get 10% off your first order.</h2>
+            <p class="promo-strip__lede">
+              New drops, member-only sales, and the occasional sizing
+              guide — straight to your inbox. No spam, unsubscribe any
+              time.
+            </p>
+          </div>
+          <form class="promo-strip__form" data-form novalidate>
+            <label class="visually-hidden" for="newsletter-email">Email address</label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              class="promo-strip__input"
+            />
+            <button type="submit" class="btn btn--primary">
+              Subscribe
+              <span aria-hidden="true">→</span>
+            </button>
+            <p class="promo-strip__done" data-form-success hidden>
+              Thanks — check your inbox for the code.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           TESTIMONIALS
+           ============================================================ -->
+      <section class="testimonials" aria-labelledby="testimonials-title">
+        <header class="testimonials__header" data-reveal>
+          <span class="small-caps">Reviews</span>
+          <h2 id="testimonials-title" class="testimonials__title">Words from people who walk a lot.</h2>
+        </header>
+
+        <ul class="testimonials__grid" role="list" data-reveal>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial__quote">
+              Ordered the runners on a Monday, worn them to a half-marathon
+              by Saturday. Fit was true to the size guide — finally.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Priya M.</span>
+              <span class="testimonial__meta">Chennai · 3 orders</span>
+            </footer>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial__quote">
+              We outfitted our entire wedding party through the bulk
+              form. Same day quote, every size in the box.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Arjun &amp; Sana</span>
+              <span class="testimonial__meta">Bengaluru · wedding, 18 pairs</span>
+            </footer>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="4 out of 5 stars">★★★★☆</div>
+            <p class="testimonial__quote">
+              Kids' school shoes that actually last a year. The velcro
+              is what got me, but the insole is the real win.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Lakshmi R.</span>
+              <span class="testimonial__meta">Hyderabad · 5 orders</span>
+            </footer>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         CATALOG DATA — read by script.js
+         =================================================================== -->
+    <script type="application/json" id="catalog-data">
+[
+  {
+    "id": "m-runner-01",
+    "name": "Cloudrunner 5",
+    "brand": "Asics",
+    "category": "men",
+    "price": 7499,
+    "oldPrice": 9999,
+    "badge": "sale",
+    "discount": 25,
+    "colors": ["#1a1a1a", "#ffffff", "#dc2626"],
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop"
+  },
+  {
+    "id": "m-sneaker-02",
+    "name": "Court Low Leather",
+    "brand": "Adidas",
+    "category": "men",
+    "price": 5999,
+    "oldPrice": null,
+    "badge": "new",
+    "discount": null,
+    "colors": ["#ffffff", "#0f172a", "#16a34a"],
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&auto=format&fit=crop"
+  },
+  {
+    "id": "m-boot-03",
+    "name": "Trailbreak Boot",
+    "brand": "Clarks",
+    "category": "men",
+    "price": 8999,
+    "oldPrice": null,
+    "badge": null,
+    "discount": null,
+    "colors": ["#5b3a1f", "#0f172a"],
+    "image": "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?w=600&auto=format&fit=crop"
+  },
+  {
+    "id": "w-runner-04",
+    "name": "Glide Knit",
+    "brand": "Nike",
+    "category": "women",
+    "price": 6499,
+    "oldPrice": null,
+    "badge": "new",
+    "discount": null,
+    "colors": ["#f472b6", "#ffffff", "#0f172a"],
+    "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&auto=format&fit=crop"
+  },
+  {
+    "id": "w-sneaker-05",
+    "name": "Court Classic",
+    "brand": "Adidas",
+    "category": "women",
+    "price": 4999,
+    "oldPrice": 6999,
+    "badge": "sale",
+    "discount": 28,
+    "colors": ["#ffffff", "#fef3c7", "#0ea5e9"],
+    "image": "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&auto=format&fit=crop"
+  },
+  
+  {
+    "id": "k-velcro-08",
+    "name": "School Easy-On",
+    "brand": "Clarks",
+    "category": "kids",
+    "price": 2999,
+    "oldPrice": 3499,
+    "badge": "sale",
+    "discount": 14,
+    "colors": ["#0f172a", "#dc2626"],
+    "image": "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600&auto=format&fit=crop"
+  },
+  
+  {
+    "id": "s-court-10",
+    "name": "Court Ace",
+    "brand": "Puma",
+    "category": "sports",
+    "price": 5299,
+    "oldPrice": null,
+    "badge": "new",
+    "discount": null,
+    "colors": ["#ffffff", "#22c55e", "#dc2626"],
+    "image": "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&auto=format&fit=crop"
+  },
+  
+  {
+    "id": "w-sale-12",
+    "name": "Slip-On Suede",
+    "brand": "Clarks",
+    "category": "women",
+    "price": 3499,
+    "oldPrice": 4999,
+    "badge": "sale",
+    "discount": 30,
+    "colors": ["#be185d", "#0f172a"],
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop"
+  }
+]
+    </script>
+
+    <script src="./js/data.js" defer></script>
+    <script src="./js/navbar.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <script src="./js/form-validation.js" defer></script>
+    <script src="./js/script.js" defer></script>
+  </body>
+</html>

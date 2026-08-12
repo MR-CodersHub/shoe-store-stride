@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stride product details — specs, features, FAQs and related styles for the chosen shoe."
+    />
+    <title>Product details — Stride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E"
+    />
+    <script>
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <!-- ===========================================================
+           HERO — content rendered by js/products.js?id=...
+           =========================================================== -->
+      <section class="page-hero" aria-labelledby="pd-title">
+        <div class="page-hero__inner">
+          <div class="page-hero__copy" data-detail-hero data-reveal>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </div>
+          <div class="page-hero__media" data-detail-hero-image data-reveal>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FEATURES — rendered by js/products.js
+           =========================================================== -->
+      <section class="section" aria-labelledby="pd-features-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">Why you’ll love them</span>
+            <h2 id="pd-features-title" class="sec-title">Built around <span data-detail-name>this pair</span>.</h2>
+          </header>
+          <ul class="feature-list" data-detail-features>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           SPECS — rendered by js/products.js
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="pd-specs-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">The fine print</span>
+            <h2 id="pd-specs-title" class="sec-title">Specs that matter.</h2>
+          </header>
+          <div class="specs" data-detail-specs>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FAQ — rendered by js/products.js
+           =========================================================== -->
+      <section class="section" aria-labelledby="pd-faq-title">
+        <div class="wrap wrap--narrow">
+          <header class="sec-head sec-head--center" data-reveal>
+            <span class="sec-eyebrow">FAQ</span>
+            <h2 id="pd-faq-title" class="sec-title">Good questions.</h2>
+          </header>
+          <div class="accordion" data-detail-faqs>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           RELATED — rendered by js/products.js
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="pd-related-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">Pairs well with</span>
+            <h2 id="pd-related-title" class="sec-title">Related styles.</h2>
+          </header>
+          <div class="related-products" data-detail-related>
+            <!-- Rendered from STRIDE_DATA by products.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           CTA
+           =========================================================== -->
+      <section class="section--dark" aria-label="Buy this pair">
+        <div class="wrap" style="padding:var(--space-16) 0;">
+          <div class="promo-strip__inner">
+            <div class="promo-strip__copy">
+              <span class="small-caps promo-strip__eyebrow">Ready when you are</span>
+              <h2 class="promo-strip__title">Get <span data-detail-name>this pair</span> fitted right.</h2>
+              <p class="promo-strip__lede">
+                Order online or book a free 3D fitting — every pair ships
+                with the 30-day Stride guarantee.
+              </p>
+            </div>
+            <div class="err-ctas">
+              <a href="../index.html#shop" class="btn btn--primary">Shop the collection <span aria-hidden="true">→</span></a>
+              <a href="products.html" class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.3);">All products</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Missing-product fallback (hidden until products.js renders) -->
+      <p data-product-missing hidden></p>
+    </main>
+
+    <script src="../js/data.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/form-validation.js" defer></script>
+    <script src="../js/products.js" defer></script>
+  </body>
+</html>

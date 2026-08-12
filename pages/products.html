@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stride footwear catalogue — running, casual, formal and kids' shoes for every stride."
+    />
+    <title>Products — Stride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E"
+    />
+    <script>
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <!-- ===========================================================
+           HERO
+           =========================================================== -->
+      <section class="page-hero page-hero--center" aria-labelledby="products-title">
+        <div class="page-hero__inner">
+          <span class="page-hero__eyebrow">
+            <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+            The collection · <span data-products-count>0</span> styles
+          </span>
+          <h1 id="products-title" class="page-hero__title">Find your stride.</h1>
+          <p class="page-hero__lede">
+            Running, casual, formal and kids — every pair is sized with a
+            real fitting and guaranteed for 30 days of wear.
+          </p>
+          <div class="page-hero__ctas">
+            <a href="#catalogue" class="btn btn--primary">Browse the catalogue <span aria-hidden="true">→</span></a>
+            <a href="contact.html" class="btn btn--ghost">Ask a fitter</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           CATALOGUE — grid + filters rendered by js/products.js
+           =========================================================== -->
+      <section id="catalogue" class="section section--soft" aria-labelledby="products-list-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">Shop all</span>
+            <h2 id="products-list-title" class="sec-title">Every pair, one catalogue.</h2>
+          </header>
+
+          <div class="chip-bar" data-reveal>
+            <div class="chip-bar__inner" data-products-chips>
+              <!-- Category chips rendered by js/products.js -->
+            </div>
+          </div>
+
+          <div class="shop-search" data-reveal>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input
+              type="search"
+              data-products-search
+              placeholder="Search by name, brand or style…"
+              aria-label="Search products"
+            />
+          </div>
+
+          <div class="grid-auto product-list" data-products-grid>
+            <!-- Product cards rendered by js/products.js -->
+          </div>
+
+          <p class="blog-empty" data-products-empty hidden>
+            No styles match that filter. <a href="products.html">Clear it</a> and try again.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FIT GUARANTEE
+           =========================================================== -->
+      <section class="section" aria-labelledby="products-fit-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">The Stride rule</span>
+            <h2 id="products-fit-title" class="sec-title">Measure twice, guarantee it.</h2>
+          </header>
+
+          <div class="grid-auto">
+            <div class="feature-card" data-reveal>
+              <span class="feature-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 17l3 3M9 12l7 7M3 11l4-4 6 6-4 4L3 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="17.5" cy="6.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </span>
+              <h3 class="feature-card__title">Free 3D fitting</h3>
+              <p class="feature-card__text">Scan your feet in store or by video before you buy, so the first size you try is the one you keep.</p>
+            </div>
+            <div class="feature-card" data-reveal>
+              <span class="feature-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <h3 class="feature-card__title">30-day guarantee</h3>
+              <p class="feature-card__text">Wear them for a month. If the fit, comfort or craft misses the mark, we replace or refund.</p>
+            </div>
+            <div class="feature-card" data-reveal>
+              <span class="feature-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <h3 class="feature-card__title">Repair, not replace</h3>
+              <p class="feature-card__text">Soles, stitching and rescuing are part of the care program — your favourite pair stays in rotation.</p>
+            </div>
+            <div class="feature-card" data-reveal>
+              <span class="feature-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 12h18M4 12a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 12l2-3h2l-2 3M13 12l2-3h2l-2 3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="5" cy="15" r="1.6" fill="currentColor"/><circle cx="19" cy="15" r="1.6" fill="currentColor"/></svg>
+              </span>
+              <h3 class="feature-card__title">Try before you keep</h3>
+              <p class="feature-card__text">Try-at-home boxes with three sizes and free returns on the ones that do not fit.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FAQ MINI
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="products-faq-title">
+        <div class="wrap wrap--narrow">
+          <header class="sec-head sec-head--center" data-reveal>
+            <span class="sec-eyebrow">FAQ</span>
+            <h2 id="products-faq-title" class="sec-title">Shopping questions, answered.</h2>
+          </header>
+
+          <div class="accordion" data-reveal>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>Which size should I order?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Order your scanned size — fitting is free in store or by video. Not sure? Order a try-at-home box with three sizes and keep the one that fits.</div></div>
+            </div>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>How long does delivery take?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Ready stock ships in 2–4 working days across India. Made-to-order pairs take 10–14 days and we tell you the exact date at checkout.</div></div>
+            </div>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>What does the 30-day guarantee cover?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Any defect in materials or workmanship, plus fit issues you were not able to solve with an exchange — replace or refund, your choice.</div></div>
+            </div>
+          </div>
+
+          <div class="err-ctas" style="margin-top:var(--space-8);">
+            <a href="../pages/FAQ.html" class="btn btn--ghost">More FAQs</a>
+            <a href="contact.html" class="btn btn--primary">Contact us <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/data.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/form-validation.js" defer></script>
+    <script src="../js/products.js" defer></script>
+  </body>
+</html>

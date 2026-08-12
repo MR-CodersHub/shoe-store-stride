@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Stride Run Lab — performance footwear for runners. Gait analysis, carbon plates, and a free Sunday run club." />
+  <title>Stride Run Lab — Performance footwear for runners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <script>
+    try {
+      var t = localStorage.getItem('stride-theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      var d = localStorage.getItem('stride-dir');
+      if (d) document.documentElement.setAttribute('dir', d);
+    } catch (e) { }
+  </script>
+</head>
+
+<body>
+  <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+  <main id="top">
+    <!-- ===========================================================
+           HERO (Full-Bleed Editorial — Women's Footwear)
+           =========================================================== -->
+    <section class="hero hero--editorial" aria-labelledby="hp2-title" style="min-height: 90vh;">
+      <div class="hero__bg-media">
+        <img src="../assets/hero-bg.jpg"
+          alt="Women's chic leather sandal editorial showcase" class="hero__bg-img" loading="eager" decoding="async" />
+        <div class="hero__bg-overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__inner hero__inner--editorial">
+        <!-- Left Overlay Copy -->
+        <div class="hero__copy hero__copy--editorial" data-reveal>
+          <span class="hero__eyebrow-editorial">
+            <span class="hero__eyebrow-dot-white"></span>
+            Women's Footwear · Autumn '26
+          </span>
+
+          <h1 id="hp2-title" class="hero__title hero__title--editorial">
+            Grace in<br />
+            Every Step.
+          </h1>
+
+          <p class="hero__lede-editorial">
+            Curated luxury, performance trainers, and everyday statement pairs crafted specifically for her lifestyle.
+          </p>
+
+          <div class="hero__ctas hero__ctas--editorial">
+            <a href="../index.html#shop" class="btn hero__btn-white">
+              Shop Women's Range
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="../index.html#shop" class="btn hero__btn-glass">
+              Explore Categories
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="hero__stats-editorial">
+            <div class="hero__stat-item">
+              <span class="hero__stat-val">08</span>
+              <span class="hero__stat-lbl">Curated Brands</span>
+            </div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat-item">
+              <span class="hero__stat-val">140+</span>
+              <span class="hero__stat-lbl">Women's Styles</span>
+            </div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat-item">
+              <span class="hero__stat-val">4.9★</span>
+              <span class="hero__stat-lbl">Rated by Women</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           WHAT MAKES IT DIFFERENT
+           =========================================================== -->
+    <section class="section" aria-labelledby="hp2-features-title">
+      <div class="wrap">
+        <header class="sec-head" data-reveal>
+          <span class="sec-eyebrow">Why Run Lab</span>
+          <h2 id="hp2-features-title" class="sec-title">Not just faster shoes — a faster you.</h2>
+          <p class="sec-lede">
+            Most stores sell you a size. We match a runner's whole
+            profile: gait, mileage, surface and goals.
+          </p>
+        </header>
+
+        <div class="grid-auto">
+          <div class="feature-card" data-reveal>
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M4 17l3 3M9 12l7 7M3 11l4-4 6 6-4 4L3 11z" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linejoin="round" />
+                <circle cx="17.5" cy="6.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+            </span>
+            <h3 class="feature-card__title">Treadmill gait analysis</h3>
+            <p class="feature-card__text">
+              A 20-minute session reads pronation, cadence and landing —
+              free with any running shoe, and the answer to 90% of
+              “why do I hurt” questions.
+            </p>
+          </div>
+          <div class="feature-card" data-reveal>
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3 class="feature-card__title">Carbon-plate racers</h3>
+            <p class="feature-card__text">
+              Our fastest stock: super-shoe foam and a full-length plate
+              for race day. Tried, timed and validated by our run club.
+            </p>
+          </div>
+          <div class="feature-card" data-reveal>
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M20 12a8 8 0 0 1-8 8M4 12a8 8 0 0 1 8-8" fill="none" stroke="currentColor"
+                  stroke-width="1.6" />
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" />
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+              </svg>
+            </span>
+            <h3 class="feature-card__title">30-day run guarantee</h3>
+            <p class="feature-card__text">
+              Run in them for a month. If they are not right for your
+              miles, swap them — worn is fine. Nobody else will do that.
+            </p>
+          </div>
+          <div class="feature-card" data-reveal>
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6" />
+                <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="feature-card__title">Free Sunday run club</h3>
+            <p class="feature-card__text">
+              6AM, every Sunday, from the Chennai store. 5K with pace
+              groups, and a free gait check for first-timers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           FEATURED PERFORMANCE PAIRS
+           =========================================================== -->
+    <section class="section section--soft" aria-labelledby="hp2-picks-title">
+      <div class="wrap">
+        <header class="sec-head" data-reveal>
+          <span class="sec-eyebrow">Lab picks</span>
+          <h2 id="hp2-picks-title" class="sec-title">Three pairs our coaches run in.</h2>
+        </header>
+
+        <div class="grid-3">
+          <article class="blog-card" data-reveal>
+            <a class="blog-card__media" href="../index.html#shop" aria-label="Shop the race-day pair">
+              <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=700&auto=format&fit=crop"
+                alt="Race-day carbon running shoe" loading="lazy" />
+            </a>
+            <div class="blog-card__body">
+              <div class="blog-card__meta"><span class="blog-card__cat">Race day</span><span>·</span><span>Carbon
+                  plate</span></div>
+              <h3 class="blog-card__title">The 4% club</h3>
+              <p class="blog-card__excerpt">Super-shoe foam and a full-length plate for half-marathon PRs.</p>
+              <a class="blog-card__readmore" href="../index.html#shop">Shop the pair <span
+                  aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="blog-card" data-reveal>
+            <a class="blog-card__media" href="../index.html#shop" aria-label="Shop the daily trainer">
+              <img src="https://images.unsplash.com/photo-1596703263926-eb0762ee17e4?w=700&auto=format&fit=crop"
+                alt="Everyday running trainer" loading="lazy" />
+            </a>
+            <div class="blog-card__body">
+              <div class="blog-card__meta"><span class="blog-card__cat">Daily</span><span>·</span><span>Neutral</span>
+              </div>
+              <h3 class="blog-card__title">The daily trainer</h3>
+              <p class="blog-card__excerpt">Squishy enough for long runs, light enough for tempo Tuesdays.</p>
+              <a class="blog-card__readmore" href="../index.html#shop">Shop the pair <span
+                  aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="blog-card" data-reveal>
+            <a class="blog-card__media" href="../index.html#shop" aria-label="Shop the trail runner">
+              <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=700&auto=format&fit=crop"
+                alt="Trail running shoe" loading="lazy" />
+            </a>
+            <div class="blog-card__body">
+              <div class="blog-card__meta"><span class="blog-card__cat">Trail</span><span>·</span><span>Grippy
+                  lug</span></div>
+              <h3 class="blog-card__title">The trail runner</h3>
+              <p class="blog-card__excerpt">Wet-rocks grip and stone-bruise shielding for off-road miles.</p>
+              <a class="blog-card__readmore" href="../index.html#shop">Shop the pair <span
+                  aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           STATS
+           =========================================================== -->
+    <section class="section section--tight" aria-label="Run lab statistics">
+      <div class="wrap">
+        <div class="stats-bar" data-reveal>
+          <div class="stat">
+            <div class="stat__value">500+</div>
+            <div class="stat__label">Run club members</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">3,200</div>
+            <div class="stat__label">Gait analyses done</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">17</div>
+            <div class="stat__label">City run clubs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           HOW IT WORKS
+           =========================================================== -->
+    <section class="section section--soft" aria-labelledby="hp2-how-title">
+      <div class="wrap">
+        <header class="sec-head sec-head--center" data-reveal>
+          <span class="sec-eyebrow">The process</span>
+          <h2 id="hp2-how-title" class="sec-title">Find your pair in three steps.</h2>
+        </header>
+
+        <div class="steps">
+          <div class="step" data-reveal>
+            <span class="step__num">STEP 01</span>
+            <h3 class="step__title">Gait check</h3>
+            <p class="step__text">
+              20 minutes on the treadmill with a run specialist. We read
+              pronation, cadence and landing, and rule out fit problems.
+            </p>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step__num">STEP 02</span>
+            <h3 class="step__title">Match your profile</h3>
+            <p class="step__text">
+              Trainer, racer or trail — we shortlist from the stock that
+              suits your mileage, weight and surface.
+            </p>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step__num">STEP 03</span>
+            <h3 class="step__title">Run 30 days risk-free</h3>
+            <p class="step__text">
+              Take them home, run in them for a month. If they are not
+              the one, swap them. Worn is fine — guaranteed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           TESTIMONIALS
+           =========================================================== -->
+    <section class="section" aria-labelledby="hp2-reviews-title">
+      <div class="wrap">
+        <header class="sec-head" data-reveal>
+          <span class="sec-eyebrow">From the club</span>
+          <h2 id="hp2-reviews-title" class="sec-title">Runners, in their own words.</h2>
+        </header>
+
+        <ul class="testimonials__grid" role="list" data-reveal>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial__quote">
+              The gait check told me I overpronate and every trainer I
+              ever bought confirmed it. First stability pair from the
+              Lab — zero knee pain in four months.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Vikram S.</span>
+              <span class="testimonial__meta">Run club member · 3 years</span>
+            </footer>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial__quote">
+              Wore my carbon racer straight off the shelf into a 10K and
+              set a PB by 90 seconds. The 30-day swap policy made the
+              big purchase feel safe.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Meera K.</span>
+              <span class="testimonial__meta">First half-marathon · 2026</span>
+            </footer>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__stars" aria-label="4 out of 5 stars">★★★★☆</div>
+            <p class="testimonial__quote">
+              Brought my whole trail crew for gait checks before the
+              monsoon season. They sized us for grip and warmth, not
+              just fashion.
+            </p>
+            <footer class="testimonial__author">
+              <span class="testimonial__name">Ankur D.</span>
+              <span class="testimonial__meta">Trail crew lead · 6 pairs</span>
+            </footer>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           FAQ
+           =========================================================== -->
+    <section class="section section--soft" aria-labelledby="hp2-faq-title">
+      <div class="wrap wrap--narrow">
+        <header class="sec-head sec-head--center" data-reveal>
+          <span class="sec-eyebrow">Run lab FAQ</span>
+          <h2 id="hp2-faq-title" class="sec-title">Quick answers.</h2>
+        </header>
+
+        <div class="accordion" data-reveal>
+          <div class="acc" data-accordion>
+            <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+              <span>Is the gait analysis really free?</span>
+              <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="acc__panel">
+              <div class="acc__panel-inner">Yes — free with any running shoe from the Lab, and ₹499 if you just want the
+                analysis. It takes about 20 minutes.</div>
+            </div>
+          </div>
+          <div class="acc" data-accordion>
+            <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+              <span>What does the 30-day run guarantee cover?</span>
+              <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="acc__panel">
+              <div class="acc__panel-inner">Any running pair bought from the Lab can be exchanged once within 30 days,
+                worn or not, if it does not suit your miles. Just bring them back.</div>
+            </div>
+          </div>
+          <div class="acc" data-accordion>
+            <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+              <span>Do I need to be fast to join the run club?</span>
+              <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="acc__panel">
+              <div class="acc__panel-inner">No. We run in pace groups from 6:00/km to sub-4:00/km, and walkers are
+                welcome. It is a club, not a race.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================================
+           NEWSLETTER CTA
+           =========================================================== -->
+    <section class="section--dark" aria-label="Run lab newsletter">
+      <div class="wrap" style="padding:var(--space-16) 0;">
+        <div class="promo-strip__inner">
+          <div class="promo-strip__copy">
+            <span class="small-caps promo-strip__eyebrow">Run mail</span>
+            <h2 class="promo-strip__title">One running tip, every Sunday.</h2>
+            <p class="promo-strip__lede">
+              Drop data, cadence drills and Lab-only drops on sale pairs
+              — short, practical, and free. Unsubscribe anytime.
+            </p>
+          </div>
+          <form class="promo-strip__form" data-form novalidate>
+            <label class="visually-hidden" for="runlab-email">Email address</label>
+            <input id="runlab-email" type="email" name="email" placeholder="runner@example.com" required
+              class="promo-strip__input" />
+            <button type="submit" class="btn btn--primary">Subscribe <span aria-hidden="true">→</span></button>
+            <p class="promo-strip__done" data-form-success hidden>You are on the list — see you Sunday.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/data.js" defer></script>
+  <script src="../js/navbar.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/form-validation.js" defer></script>
+</body>
+
+</html>

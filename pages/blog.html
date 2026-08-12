@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The Stride blog — size guides, buying guides, shoe care, trends and store news."
+    />
+    <title>Blog — Stride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E"
+    />
+    <script>
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <!-- ===========================================================
+           HERO
+           =========================================================== -->
+      <section class="page-hero page-hero--center" aria-labelledby="blog-title">
+        <div class="page-hero__inner">
+          <span class="page-hero__eyebrow">
+            <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+            The Stride blog
+          </span>
+          <h1 id="blog-title" class="page-hero__title">Notes on feet, fit &amp; finding the pair.</h1>
+          <p class="page-hero__lede">
+            Size guides, buying guides, care routines and store news —
+            written by the people who fit, repair and run in the shoes.
+          </p>
+          <div class="page-hero__meta">
+            <span>8 articles and counting</span>
+            <span aria-hidden="true">·</span>
+            <span>New posts every two weeks</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FEATURED POST — rendered by js/blog.js
+           =========================================================== -->
+      <section class="section" aria-labelledby="blog-featured-title">
+        <div class="wrap">
+          <h2 id="blog-featured-title" class="visually-hidden">Featured article</h2>
+          <div class="blog-featured" data-blog-featured data-reveal>
+            <!-- Rendered from STRIDE_DATA by js/blog.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           TOOLBAR + GRID — rendered/filtered by js/blog.js
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="blog-list-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">All articles</span>
+            <h2 id="blog-list-title" class="sec-title">Read, filter, find.</h2>
+          </header>
+
+          <div class="blog-toolbar" data-reveal>
+            <div class="blog-toolbar__row">
+              <label class="blog-toolbar__search">
+                <span class="visually-hidden">Search articles</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <input type="search" placeholder="Search articles…" aria-label="Search articles" data-blog-search />
+              </label>
+              <span class="blog-results" data-blog-results aria-live="polite">8 articles</span>
+            </div>
+
+            <div class="blog-toolbar__row" role="group" aria-label="Filter by category">
+              <button class="chip is-active" type="button" data-blog-cat="all">All <span class="chip__count" data-count>8</span></button>
+              <button class="chip" type="button" data-blog-cat="Guides">Guides <span class="chip__count" data-count>2</span></button>
+              <button class="chip" type="button" data-blog-cat="Buying Guides">Buying Guides <span class="chip__count" data-count>3</span></button>
+              <button class="chip" type="button" data-blog-cat="Care &amp; Repair">Care &amp; Repair <span class="chip__count" data-count>1</span></button>
+              <button class="chip" type="button" data-blog-cat="Trends">Trends <span class="chip__count" data-count>1</span></button>
+              <button class="chip" type="button" data-blog-cat="News">News <span class="chip__count" data-count>1</span></button>
+            </div>
+          </div>
+
+          <div class="blog-grid" data-blog-grid aria-live="polite">
+            <!-- Cards rendered by js/blog.js -->
+          </div>
+
+          <p class="blog-empty" data-blog-empty hidden>
+            No articles match that search. Try a different keyword or category.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           NEWSLETTER
+           =========================================================== -->
+      <section class="section" aria-label="Newsletter signup">
+        <div class="wrap">
+          <div class="promo-strip__inner" style="grid-template-columns:1fr;">
+            <div class="promo-strip__copy" style="text-align:center;align-items:center;">
+              <span class="small-caps promo-strip__eyebrow">Never miss a guide</span>
+              <h2 class="promo-strip__title">The blog, in your inbox.</h2>
+              <p class="promo-strip__lede" style="margin-inline:auto;">
+                One practical article every two weeks, plus Lab drops.
+                No spam, unsubscribe any time.
+              </p>
+            </div>
+            <form class="promo-strip__form" data-form novalidate>
+              <label class="visually-hidden" for="blog-newsletter">Email address</label>
+              <input id="blog-newsletter" type="email" name="email" placeholder="you@example.com" required class="promo-strip__input" />
+              <button type="submit" class="btn btn--primary">Subscribe <span aria-hidden="true">→</span></button>
+              <p class="promo-strip__done" data-form-success hidden>Thanks — you are subscribed to the blog.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           TOPICS CTA
+           =========================================================== -->
+      <section class="section section--soft" aria-label="Suggested reading">
+        <div class="wrap wrap--narrow" style="text-align:center;">
+          <h2 class="sec-title">Just starting out?</h2>
+          <p class="sec-lede" style="margin:var(--space-3) auto 0;max-width:34rem;">
+            Begin with the size guide — it is the one article that will
+            change how every future pair fits.
+          </p>
+          <div class="err-ctas" style="margin-top:var(--space-6);">
+            <a href="blog-details.html?id=size-guide" class="btn btn--primary">Read the size guide <span aria-hidden="true">→</span></a>
+            <a href="products.html" class="btn btn--ghost">Shop the collection</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/data.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/form-validation.js" defer></script>
+    <script src="../js/blog.js" defer></script>
+  </body>
+</html>

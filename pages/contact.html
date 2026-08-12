@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Stride — support email, phone, store location and hours, plus a booking form for fittings, repairs and bulk orders."
+    />
+    <title>Contact — Stride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ef4444'/%3E%3Cpath d='M5 22h22l-2-6-7-2-5 4-4-2-4 2z' fill='%23ffffff'/%3E%3C/svg%3E"
+    />
+    <script>
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <!-- ===========================================================
+           HERO
+           =========================================================== -->
+      <section class="page-hero" aria-labelledby="contact-title">
+        <div class="page-hero__inner">
+          <div class="page-hero__copy" data-reveal>
+            <span class="page-hero__eyebrow">
+              <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+              Contact Stride
+            </span>
+            <h1 id="contact-title" class="page-hero__title">
+              Talk to a person, <em style="color:var(--accent-deep);font-style:normal">not a bot.</em>
+            </h1>
+            <p class="page-hero__lede">
+              Fitting, repairs, bulk quotes, styling — every message is
+              read by a human in Chennai and answered within one working
+              day.
+            </p>
+            <div class="page-hero__ctas">
+              <a href="#contact-form" class="btn btn--primary">Send a message <span aria-hidden="true">→</span></a>
+              <a href="tel:+914412345678" class="btn btn--ghost">Call +91 44 1234 5678</a>
+            </div>
+            <div class="page-hero__meta">
+              <span>hello@stride.shop</span>
+              <span aria-hidden="true">·</span>
+              <span>Open 10am – 9pm, all days</span>
+            </div>
+          </div>
+          <div class="page-hero__media" data-reveal>
+            <img
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop"
+              alt="The Stride storefront in Chennai"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           CONTACT INFO CARDS
+           =========================================================== -->
+      <section class="section section--tight" aria-label="Contact information">
+        <div class="wrap">
+          <div class="contact-info-grid">
+            <div class="info-card" data-reveal>
+              <span class="info-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </span>
+              <h2 class="info-card__title">Email us</h2>
+              <p class="info-card__text">
+                <a href="mailto:hello@stride.shop">hello@stride.shop</a><br />
+                <a href="mailto:bulk@stride.shop">bulk@stride.shop</a><br />
+                Replies within 1 working day.
+              </p>
+            </div>
+            <div class="info-card" data-reveal>
+              <span class="info-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h4l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </span>
+              <h2 class="info-card__title">Call us</h2>
+              <p class="info-card__text">
+                <a href="tel:+914412345678">+91 44 1234 5678</a><br />
+                <a href="tel:+919800011223">+91 98 0001 1223</a><br />
+                Store &amp; repair desk, 10am – 9pm.
+              </p>
+            </div>
+            <div class="info-card" data-reveal>
+              <span class="info-card__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 22s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </span>
+              <h2 class="info-card__title">Visit the store</h2>
+              <p class="info-card__text">
+                14 Khader Nawaz Khan Road,<br />
+                Nungambakkam, Chennai 600 006<br />
+                Open all days · Free parking after 7pm.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FORM + MAP
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="contact-form-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">Get in touch</span>
+            <h2 id="contact-form-title" class="sec-title">Tell us what you need.</h2>
+            <p class="sec-lede">
+              All fields marked required must be filled in. We validate
+              everything on this side, so your message actually reaches us.
+            </p>
+          </header>
+
+          <div class="contact-layout">
+            <form id="contact-form" class="form-card" data-form novalidate data-reveal>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="cf-name">Full name</label>
+                  <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name" required data-min="2" />
+                  <span class="field-error" hidden></span>
+                </div>
+                <div class="field">
+                  <label for="cf-email">Email address</label>
+                  <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+                  <span class="field-error" hidden></span>
+                </div>
+                <div class="field">
+                  <label for="cf-phone">Phone <span style="text-transform:none;letter-spacing:0;">(optional)</span></label>
+                  <input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 98 0001 1223" data-type="phone" />
+                  <span class="field-error" hidden></span>
+                </div>
+                <div class="field">
+                  <label for="cf-topic">Topic</label>
+                  <select id="cf-topic" name="topic" required>
+                    <option value="" disabled selected>Choose a topic…</option>
+                    <option value="order">Order support</option>
+                    <option value="fitting">3D fitting / sizing</option>
+                    <option value="repair">Shoe care &amp; repair</option>
+                    <option value="bulk">Bulk &amp; corporate</option>
+                    <option value="styling">Personal styling</option>
+                    <option value="gift">Gift cards</option>
+                    <option value="other">Something else</option>
+                  </select>
+                  <span class="field-error" hidden></span>
+                </div>
+                <div class="field field--full">
+                  <label for="cf-message">Message</label>
+                  <textarea id="cf-message" name="message" rows="5" placeholder="Tell us the details…" required data-min="20" data-max="2000"></textarea>
+                  <span class="field-error" hidden></span>
+                </div>
+              </div>
+
+              <div class="form-status" data-form-success hidden>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 12.5l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>
+                  <strong>Message sent — thank you.</strong> We have your
+                  details and will reply within one working day. A
+                  confirmation is on its way to your inbox.
+                </span>
+              </div>
+
+              <button type="submit" class="btn btn--primary" style="align-self:flex-start;">
+                Send message
+                <span aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <div class="sidebar" style="position:static;gap:var(--space-4);" data-reveal>
+              <div class="map-frame">
+                <iframe
+                  title="Map showing Stride store in Nungambakkam, Chennai"
+                  src="https://www.google.com/maps?q=Nungambakkam,%20Chennai&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+
+              <div class="map-location">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 22s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <span>
+                  <strong style="color:var(--ink);">Nungambakkam, Chennai 600 006.</strong><br />
+                  Landmark: opposite the Citi Centre mall entrance.
+                  Walk from Nungambakkam station is 6 minutes.
+                </span>
+              </div>
+
+              <div class="widget">
+                <h2 class="widget__title">Store hours</h2>
+                <ul class="widget__list">
+                  <li class="widget__link"><span>Monday – Friday</span><span>10:00 – 21:00</span></li>
+                  <li class="widget__link"><span>Saturday</span><span>10:00 – 21:00</span></li>
+                  <li class="widget__link"><span>Sunday</span><span>10:00 – 20:00</span></li>
+                  <li class="widget__link"><span>Run club</span><span>Sun 06:00</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           WHAT HAPPENS NEXT
+           =========================================================== -->
+      <section class="section" aria-labelledby="contact-next-title">
+        <div class="wrap">
+          <header class="sec-head" data-reveal>
+            <span class="sec-eyebrow">After you send it</span>
+            <h2 id="contact-next-title" class="sec-title">What happens next.</h2>
+          </header>
+
+          <div class="steps">
+            <div class="step" data-reveal>
+              <span class="step__num">STEP 01</span>
+              <h3 class="step__title">Confirmation</h3>
+              <p class="step__text">An automated receipt lands in your inbox the moment your message is sent.</p>
+            </div>
+            <div class="step" data-reveal>
+              <span class="step__num">STEP 02</span>
+              <h3 class="step__title">A human reads it</h3>
+              <p class="step__text">Support, the bulk desk or a stylist picks it up within one working day.</p>
+            </div>
+            <div class="step" data-reveal>
+              <span class="step__num">STEP 03</span>
+              <h3 class="step__title">You get an answer</h3>
+              <p class="step__text">A real reply with next steps — a quote, a slot, or a fix.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           FAQ MINI
+           =========================================================== -->
+      <section class="section section--soft" aria-labelledby="contact-faq-title">
+        <div class="wrap wrap--narrow">
+          <header class="sec-head sec-head--center" data-reveal>
+            <span class="sec-eyebrow">Before you write</span>
+            <h2 id="contact-faq-title" class="sec-title">Common questions.</h2>
+          </header>
+
+          <div class="accordion" data-reveal>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>How fast do you reply?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Within one working day. Bulk quotes are typically faster — we target 24 hours.</div></div>
+            </div>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>Can I book a fitting or repair here?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Yes — choose the fitting or repair topic and include a preferred date, and we will confirm a slot.</div></div>
+            </div>
+            <div class="acc" data-accordion>
+              <button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">
+                <span>Where is the nearest parking?</span>
+                <svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <div class="acc__panel"><div class="acc__panel-inner">Street parking on Khader Nawaz Khan Road and the Citi Centre car park across the road. Free after 7pm.</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================================================
+           CTA
+           =========================================================== -->
+      <section class="section--dark" aria-label="Other ways to reach us">
+        <div class="wrap" style="padding:var(--space-16) 0;">
+          <div class="promo-strip__inner">
+            <div class="promo-strip__copy">
+              <span class="small-caps promo-strip__eyebrow">Quick links</span>
+              <h2 class="promo-strip__title">Prefer to browse first?</h2>
+              <p class="promo-strip__lede">
+                Our FAQ covers shipping, returns and sizing. The blog is a
+                free library of fit advice.
+              </p>
+            </div>
+            <div class="err-ctas">
+              <a href="FAQ.html" class="btn btn--primary">Read the FAQ <span aria-hidden="true">→</span></a>
+              <a href="blog.html" class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.3);">Visit the blog</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/data.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/form-validation.js" defer></script>
+  </body>
+</html>
