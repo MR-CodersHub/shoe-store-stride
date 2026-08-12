@@ -513,7 +513,7 @@ var STRIDE_DATA = (function () {
       readTime: '6 min read',
       excerpt:
         'Two-thirds of people wear the wrong shoe size. Here is the 10-minute method we use in our fitting studio, with a printable width chart.',
-      image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&auto=format&fit=crop',
+      image: '../assets/shoe-size.jpg',
       imageAlt: 'Measuring a foot against a sizing chart',
       author: { name: 'Rhea Kapoor', role: 'Head of Fitting', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop' },
       tags: ['Sizing', 'Guides', 'Fitting'],
@@ -643,7 +643,7 @@ var STRIDE_DATA = (function () {
       readTime: '5 min read',
       excerpt:
         'Velcro vs laces, growing room, and the two hard-wearing brands our school parents come back for. A practical guide to the annual school-shoe decision.',
-      image: 'https://images.unsplash.com/photo-1514989940723-e8e51635289c?w=900&auto=format&fit=crop',
+      image: '../assets/school-shoes.jpg',
       imageAlt: 'Bright kids shoes lined up on a mat',
       author: { name: 'Priya Menon', role: 'Kids Buying Lead', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&auto=format&fit=crop' },
       tags: ['Kids', 'Buying Guides', 'School'],
@@ -719,88 +719,7 @@ var STRIDE_DATA = (function () {
         }
       ]
     },
-    {
-      id: 'trend-picks',
-      title: 'Autumn ’26: five silhouettes we are betting on',
-      category: 'Trends',
-      date: '2026-05-30',
-      readTime: '4 min read',
-      excerpt:
-        'Bison leather, chunky-but-light soles, and the return of the court classic. The five shapes our buyers keep coming back to this season.',
-      image: 'https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=900&auto=format&fit=crop',
-      imageAlt: 'A curated collection of seasonal footwear',
-      author: { name: 'Rhea Kapoor', role: 'Head of Fitting', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop' },
-      tags: ['Trends', 'Autumn', 'Style'],
-      featured: false,
-      content: [
-        {
-          heading: 'Bison leather derbies',
-          body: [
-            'Heavy-grain leather that scuffs beautifully and needs almost no breaking in. It is the workhorse of the season — plain, dark, and indestructible.'
-          ]
-        },
-        {
-          heading: 'Chunky-but-light runners',
-          body: [
-            'The chunky runner has slimmed down. Today it is a full-width sole with a featherweight foam, so you get the silhouette without the leg-day at the end of the day.'
-          ]
-        },
-        {
-          heading: 'The court classic returns',
-          body: [
-            'A clean, low-profile tennis shoe in white leather works from the office to the weekend. It is the pair that sells out first every time it lands.'
-          ]
-        },
-        {
-          heading: 'Warm-tone suedes',
-          body: [
-            'Terracotta, toffee and moss suedes give the autumn palette depth. Pair them with mid-weight cotton and you have the whole season solved.'
-          ]
-        },
-        {
-          heading: 'Practical loafers',
-          body: [
-            'Slipper-soft loafers with a real sole — the ones you can actually walk in. The biggest quiet winner in our stores right now.'
-          ]
-        }
-      ]
-    },
-    {
-      id: 'sustainability',
-      title: 'What we are actually doing about footwear waste',
-      category: 'News',
-      date: '2026-05-08',
-      readTime: '6 min read',
-      excerpt:
-        'A repair bench that has saved 40,000 pairs, a packaging switch, and the honest numbers on what still needs work.',
-      image: 'https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=900&auto=format&fit=crop',
-      imageAlt: 'A collection of well-worn shoes waiting for repair',
-      author: { name: 'Farhan Sheikh', role: 'Repair Bench Lead', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop' },
-      tags: ['Sustainability', 'News', 'Repair'],
-      featured: false,
-      content: [
-        {
-          heading: 'The 40,000-pair repair bench',
-          body: [
-            'Since 2021, our care service has revived over 40,000 pairs that would otherwise have been thrown away — re-soled, re-cleaned, re-waterproofed, and back on somebody’s feet.'
-          ]
-        },
-        {
-          heading: 'Packaging without the plastic',
-          body: [
-            'Every order ships in a paper-fibre box with a paper tape seal. The shoe bags are recycled cotton, and the insoles now use a bio-based foam.',
-            'It is not revolutionary — it is just the baseline we think any shoe seller should meet.'
-          ]
-        },
-        {
-          heading: 'What still needs work',
-          body: [
-            'Most synthetic shoes are still hard to recycle, and we cannot fix that alone. Our honest position is to sell fewer, better pairs and to repair what breaks, while we pressure our brands to design for disassembly.'
-          ]
-        }
-      ]
-    },
-    {
+   {
       id: 'wide-feet',
       title: 'Shopping for wide feet: the guide brands do not give you',
       category: 'Guides',
