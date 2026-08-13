@@ -10,6 +10,20 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
+  function escHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatRupees(n) {
+    var v = Number(n);
+    if (!isFinite(v)) return '₹0';
+    return '₹' + v.toLocaleString('en-IN');
+  }
+
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   var root = currentFile === 'index.html' ? './' : '../';
@@ -160,6 +174,328 @@
   }
 
   window.StrideToast = showToast;
+
+  /* -----------------------------------------------------------------------
+     Shared cart — drawer, badge and persistence for every page
+     ----------------------------------------------------------------------- */
+  var CART_KEY = 'stride-cart';
+  var cartItems = [];
+  var cartResolver = null;
+  var cartOpen = false;
+
+  function loadCart() {
+    try {
+      var raw = localStorage.getItem(CART_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      cartItems = Array.isArray(arr) ? arr.filter(function (c) { return c && c.id; }) : [];
+    } catch (e) {
+      cartItems = [];
+    }
+  }
+
+  function saveCart() {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cartItems)); } catch (e) { /* ignore */ }
+  }
+
+  function cartLookup(id) {
+    return cartResolver ? cartResolver(id) : null;
+  }
+
+  function renderCart() {
+    var badge = $('[data-cart-count]');
+    var total = cartItems.reduce(function (sum, c) { return sum + (Number(c.qty) || 0); }, 0);
+    if (badge) {
+      badge.hidden = total === 0;
+      badge.textContent = total;
+    }
+
+    var items = $('[data-drawer-items]');
+    var subtotalEl = $('[data-drawer-subtotal]');
+    var countEl = $('[data-drawer-count]');
+    if (!items) return;
+
+    if (!cartItems.length) {
+      items.innerHTML = '<p class="drawer__empty">Your bag is empty. Add a pair to get started.</p>';
+      if (subtotalEl) subtotalEl.textContent = formatRupees(0);
+      if (countEl) countEl.textContent = '(0)';
+      return;
+    }
+
+    items.innerHTML = cartItems.map(function (line) {
+      var p = cartLookup(line.id);
+      if (!p) return '';
+      var lineTotal = (Number(p.price) || 0) * line.qty;
+      return (
+        '<div class="drawer-item">' +
+          '<img class="drawer-item__image" src="' + escHtml(p.image) + '" alt="" loading="lazy" />' +
+          '<div>' +
+            '<div class="drawer-item__brand">' + escHtml(p.brand) + '</div>' +
+            '<div class="drawer-item__name">' + escHtml(p.name) + '</div>' +
+            '<div class="drawer-item__qty" role="group" aria-label="Quantity for ' + escHtml(p.name) + '">' +
+              '<button type="button" data-qty-dec="' + escHtml(line.id) + '" aria-label="Decrease quantity">−</button>' +
+              '<span>' + line.qty + '</span>' +
+              '<button type="button" data-qty-inc="' + escHtml(line.id) + '" aria-label="Increase quantity">+</button>' +
+            '</div>' +
+          '</div>' +
+          '<div style="text-align:right;">' +
+            '<div class="drawer-item__price">' + formatRupees(lineTotal) + '</div>' +
+            '<button class="drawer-item__remove" type="button" data-remove="' + escHtml(line.id) + '">Remove</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    var subtotal = cartItems.reduce(function (sum, line) {
+      var p = cartLookup(line.id);
+      return sum + (p ? (Number(p.price) || 0) * line.qty : 0);
+    }, 0);
+    if (subtotalEl) subtotalEl.textContent = formatRupees(subtotal);
+    var totalQty = cartItems.reduce(function (sum, c) { return sum + c.qty; }, 0);
+    if (countEl) countEl.textContent = '(' + totalQty + ')';
+  }
+
+  function openCart() {
+    var drawer = $('[data-cart-drawer]');
+    if (!drawer) return;
+    cartOpen = true;
+    drawer.hidden = false;
+    document.body.style.overflow = 'hidden';
+    renderCart();
+  }
+
+  function closeCart() {
+    var drawer = $('[data-cart-drawer]');
+    if (!drawer) return;
+    cartOpen = false;
+    drawer.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function initDrawer() {
+    $$('[data-cart-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', openCart);
+    });
+    $$('[data-drawer-close]').forEach(function (btn) {
+      btn.addEventListener('click', closeCart);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && cartOpen) closeCart();
+    });
+
+    var items = $('[data-drawer-items]');
+    if (items) {
+      items.addEventListener('click', function (e) {
+        var inc = e.target.closest('[data-qty-inc]');
+        var dec = e.target.closest('[data-qty-dec]');
+        var rem = e.target.closest('[data-remove]');
+        if (inc) cartChangeQty(inc.getAttribute('data-qty-inc'), 1);
+        else if (dec) cartChangeQty(dec.getAttribute('data-qty-dec'), -1);
+        else if (rem) cartRemove(rem.getAttribute('data-remove'));
+      });
+    }
+
+    var checkout = $('[data-drawer-checkout]');
+    if (checkout) {
+      checkout.addEventListener('click', function () {
+        if (!cartItems.length) {
+          showToast('Your bag is empty.', 'error');
+          return;
+        }
+        var totalQty = cartItems.reduce(function (s, c) { return s + c.qty; }, 0);
+        var subtotal = cartItems.reduce(function (sum, line) {
+          var p = cartLookup(line.id);
+          return sum + (p ? (Number(p.price) || 0) * line.qty : 0);
+        }, 0);
+        showToast(totalQty + ' items · ' + formatRupees(subtotal) + ' — checkout placeholder.');
+      });
+    }
+  }
+
+  function cartAdd(id) {
+    if (!cartLookup(id)) return;
+    var existing = cartItems.filter(function (c) { return c.id === id; })[0];
+    if (existing) existing.qty += 1;
+    else cartItems.push({ id: id, qty: 1 });
+    saveCart();
+    renderCart();
+  }
+
+  function cartRemove(id) {
+    cartItems = cartItems.filter(function (c) { return c.id !== id; });
+    saveCart();
+    renderCart();
+  }
+
+  function cartChangeQty(id, delta) {
+    var item = cartItems.filter(function (c) { return c.id === id; })[0];
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) {
+      cartRemove(id);
+      return;
+    }
+    saveCart();
+    renderCart();
+  }
+
+  window.StrideCart = {
+    setResolver: function (fn) {
+      cartResolver = fn;
+      renderCart();
+    },
+    items: function () { return cartItems.slice(); },
+    totalQty: function () {
+      return cartItems.reduce(function (s, c) { return s + c.qty; }, 0);
+    },
+    add: cartAdd,
+    remove: cartRemove,
+    changeQty: cartChangeQty,
+    open: openCart,
+    close: closeCart,
+    render: renderCart
+  };
+
+  /* -----------------------------------------------------------------------
+     Quick-view product modal (used by product cards on every page)
+     ----------------------------------------------------------------------- */
+  var quickViewEl = null;
+  var quickViewContent = null;
+
+  function quickViewStars(rating) {
+    var r = Math.max(0, Math.min(5, Number(rating) || 0));
+    var full = Math.round(r);
+    var out = '';
+    for (var i = 1; i <= 5; i += 1) {
+      out += i <= full
+        ? '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 3.4l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z" fill="currentColor"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 3.4l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.7 1-5.9-4.3-4.1 5.9-.8z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
+    }
+    return out;
+  }
+
+  function quickViewMarkup(p) {
+    var badge = p.badge
+      ? '<span class="product-card__badge product-card__badge--' + escHtml(p.badge) + '">' +
+          (p.badge === 'new' ? 'New' : p.badge === 'sale' && (p.compareAt || p.oldPrice) ? '-' + Math.round((1 - p.price / (p.compareAt || p.oldPrice)) * 100) + '%' : '') +
+        '</span>'
+      : '';
+
+    var rating = p.rating
+      ? '<span class="product-card__rating" aria-label="Rated ' + escHtml(p.rating) + ' out of 5">' +
+          '<span class="stars" aria-hidden="true">' + quickViewStars(p.rating) + '</span>' +
+          '<span class="product-card__rating-value">' + escHtml(p.rating) + '</span>' +
+          (p.reviewCount ? '<span class="product-card__review-count">(' + escHtml(p.reviewCount) + ')</span>' : '') +
+        '</span>'
+      : '';
+
+    var oldPrice = p.compareAt || p.oldPrice
+      ? '<span class="product-card__price-old">' + formatRupees(p.compareAt || p.oldPrice) + '</span>'
+      : '';
+
+    var lede = p.lede || p.tagline
+      ? '<p class="modal__lede">' + escHtml(p.lede || p.tagline) + '</p>'
+      : '';
+
+    var sizes = (p.sizes || []).length
+      ? p.sizes.map(function (s) { return '<span class="detail-chip">' + escHtml(s) + '</span>'; }).join('')
+      : '<span class="detail-chip">One size</span>';
+
+    var features = (p.features || []).slice(0, 3);
+    var featureList = features.length
+      ? '<ul class="modal__features">' + features.map(function (f) {
+          return '<li><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' + escHtml(f.title) + '</li>';
+        }).join('') + '</ul>'
+      : '';
+
+    var specs = (p.specs || []).slice(0, 4);
+    var specList = specs.length
+      ? '<dl class="modal__specs">' + specs.map(function (s) {
+          return '<div><dt>' + escHtml(s.title) + '</dt><dd>' + escHtml(s.text) + '</dd></div>';
+        }).join('') + '</dl>'
+      : '';
+
+    return (
+      '<div class="modal__media">' + badge +
+        '<img src="' + escHtml(p.image) + '" alt="' + escHtml(p.imageAlt || p.name) + '" loading="lazy" decoding="async" />' +
+      '</div>' +
+      '<div class="modal__body">' +
+        '<span class="product-card__brand">' + escHtml(p.brand) + (p.category ? ' · ' + escHtml(p.category) : '') + '</span>' +
+        '<h3 class="modal__title">' + escHtml(p.name) + '</h3>' +
+        rating +
+        lede +
+        '<div class="product-card__price-row">' +
+          '<span class="product-card__price">' + formatRupees(p.price) + '</span>' + oldPrice +
+        '</div>' +
+        '<div class="modal__block">' +
+          '<span class="modal__label">Sizes</span>' +
+          '<div class="modal__sizes">' + sizes + '</div>' +
+        '</div>' +
+        featureList +
+        specList +
+        '<button class="btn btn--primary btn--block modal__add" type="button" data-modal-add="' + escHtml(p.id) + '">Add to cart <span aria-hidden="true">→</span></button>' +
+        '<p class="modal__footnote">30-day fit guarantee · Free 3D fitting</p>' +
+      '</div>'
+    );
+  }
+
+  function ensureQuickView() {
+    if (quickViewEl) return;
+    quickViewEl = document.createElement('div');
+    quickViewEl.className = 'modal';
+    quickViewEl.setAttribute('data-quick-view', '');
+    quickViewEl.hidden = true;
+    quickViewEl.innerHTML =
+      '<div class="modal__overlay" data-quick-view-close></div>' +
+      '<div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">' +
+        '<button class="modal__close" type="button" data-quick-view-close aria-label="Close details">' +
+          '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<div class="modal__content" data-quick-view-content></div>' +
+      '</div>';
+    document.body.appendChild(quickViewEl);
+
+    quickViewContent = quickViewEl.querySelector('[data-quick-view-content]');
+
+    quickViewEl.querySelectorAll('[data-quick-view-close]').forEach(function (el) {
+      el.addEventListener('click', closeQuickView);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && quickViewEl && !quickViewEl.hidden) closeQuickView();
+    });
+
+    quickViewEl.addEventListener('click', function (e) {
+      var addBtn = e.target.closest('[data-modal-add]');
+      if (!addBtn) return;
+      var id = addBtn.getAttribute('data-modal-add');
+      var product = cartLookup(id) || (window.STRIDE_DATA && window.STRIDE_DATA.getProduct(id));
+      cartAdd(id);
+      showToast((product && product.name ? product.name : 'Item') + ' added to your bag.');
+      addBtn.classList.add('is-added');
+      addBtn.innerHTML = 'Added <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      setTimeout(function () {
+        addBtn.classList.remove('is-added');
+        addBtn.innerHTML = 'Add to cart <span aria-hidden="true">→</span>';
+      }, 1400);
+    });
+  }
+
+  function openQuickView(product) {
+    if (!product) return;
+    ensureQuickView();
+    quickViewContent.innerHTML = quickViewMarkup(product);
+    var title = quickViewEl.querySelector('.modal__title');
+    if (title) title.id = 'quick-view-title';
+    quickViewEl.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeQuickView() {
+    if (!quickViewEl) return;
+    quickViewEl.hidden = true;
+    if (!cartOpen) document.body.style.overflow = '';
+  }
+
+  window.StrideQuickView = { open: openQuickView, close: closeQuickView };
 
   /* -----------------------------------------------------------------------
      Accordion (FAQ) — idempotent, so dynamic renders can re-init safely
@@ -395,6 +731,9 @@
     initActionFallbacks();
     initSearch();
     initCountdown();
+    loadCart();
+    initDrawer();
+    renderCart();
     initReveal();
   }
 

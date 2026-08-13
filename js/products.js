@@ -1,7 +1,8 @@
 /* ==========================================================================
    Stride — products behaviour
-   1) products.html: renders the product listing grid with filter chips + search
-   2) product-details.html?id=...: renders the full product detail page
+   products.html: renders the product listing grid with filter chips + search
+   "View details" opens a quick-view modal (StrideQuickView) instead of a
+   dedicated detail page.
    ========================================================================== */
 
 (function () {
@@ -76,23 +77,31 @@
   }
 
   function cardMarkup(p) {
-    var href = 'product-details.html?id=' + encodeURIComponent(p.id);
+    var id = 'data-details="' + esc(p.id) + '"';
     return (
       '<article class="product-card" data-reveal>' +
-        '<a class="product-card__media" href="' + href + '" tabindex="-1" aria-hidden="true">' +
+        '<button type="button" class="product-card__media" ' + id + ' aria-label="View details for ' + esc(p.name) + '">' +
           badgeMarkup(p) +
           '<img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt) + '" loading="lazy" decoding="async" />' +
-        '</a>' +
+        '</button>' +
         '<div class="product-card__body">' +
           '<span class="product-card__brand">' + esc(p.brand) + '</span>' +
-          '<h3 class="product-card__name"><a href="' + href + '">' + esc(p.name) + '</a></h3>' +
+          '<h3 class="product-card__name"><button type="button" ' + id + '>' + esc(p.name) + '</button></h3>' +
           colorsMarkup(p) +
           ratingMarkup(p) +
           priceMarkup(p) +
-          '<a class="product-card__cta" href="' + href + '">View details <span aria-hidden="true">→</span></a>' +
+          '<button class="product-card__cta" type="button" ' + id + '>View details <span aria-hidden="true">→</span></button>' +
         '</div>' +
       '</article>'
     );
+  }
+
+  function openDetails(id) {
+    var product = DATA.getProduct(id);
+    if (!product) return;
+    if (window.StrideQuickView) {
+      window.StrideQuickView.open(product);
+    }
   }
 
   /* -----------------------------------------------------------------------
@@ -195,6 +204,13 @@
       if (window.StrideReveal) window.StrideReveal();
     }
 
+    grid.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-details]');
+      if (!btn) return;
+      e.preventDefault();
+      openDetails(btn.getAttribute('data-details'));
+    });
+
     if (searchInput) {
       if (urlQ) searchInput.value = urlQ;
       searchInput.addEventListener('input', function () {
@@ -216,153 +232,15 @@
   }
 
   /* -----------------------------------------------------------------------
-     product-details.html?id=... — full detail page
-     ----------------------------------------------------------------------- */
-  function statsMarkup(stats) {
-    return stats.map(function (st) {
-      return (
-        '<div class="stat">' +
-          '<div class="stat__value">' + esc(st.value) + '</div>' +
-          '<div class="stat__label">' + esc(st.label) + '</div>' +
-        '</div>'
-      );
-    }).join('');
-  }
-
-  function featuresMarkup(features) {
-    return features.map(function (f) {
-      return (
-        '<li class="feature-check" data-reveal>' +
-          '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-          '<div><strong>' + esc(f.title) + '</strong><p>' + esc(f.text) + '</p></div>' +
-        '</li>'
-      );
-    }).join('');
-  }
-
-  function specsMarkup(specs) {
-    return specs.map(function (row) {
-      return (
-        '<div class="spec">' +
-          '<span class="spec__key">' + esc(row.title) + '</span>' +
-          '<span class="spec__value">' + esc(row.text) + '</span>' +
-        '</div>'
-      );
-    }).join('');
-  }
-
-  function faqMarkup(faqs) {
-    return faqs.map(function (f) {
-      return (
-        '<div class="acc" data-accordion>' +
-          '<button class="acc__btn" type="button" data-accordion-toggle aria-expanded="false">' +
-            '<span>' + esc(f.q) + '</span>' +
-            '<svg class="acc__icon" viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>' +
-          '</button>' +
-          '<div class="acc__panel"><div class="acc__panel-inner">' + esc(f.a) + '</div></div>' +
-        '</div>'
-      );
-    }).join('');
-  }
-
-  function relatedMarkup(ids) {
-    return ids.map(function (id) {
-      var p = DATA.getProduct(id);
-      if (!p) return '';
-      var href = 'product-details.html?id=' + encodeURIComponent(p.id);
-      return (
-        '<a class="related-product" href="' + href + '" data-reveal>' +
-          '<span class="related-product__media"><img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt) + '" loading="lazy" decoding="async" /></span>' +
-          '<span class="related-product__body">' +
-            '<span class="related-product__brand">' + esc(p.brand) + '</span>' +
-            '<span class="related-product__name">' + esc(p.name) + '</span>' +
-            '<span class="related-product__price">' + formatRupees(p.price) + '</span>' +
-          '</span>' +
-        '</a>'
-      );
-    }).join('');
-  }
-
-  function initProductDetails() {
-    var wrap = document.querySelector('[data-product-detail]');
-    if (!wrap) return;
-
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get('id');
-    var product = DATA.getProduct(id);
-
-    var missing = document.querySelector('[data-product-missing]');
-
-    if (!product) {
-      if (missing) missing.hidden = false;
-      wrap.innerHTML =
-        '<p class="blog-empty">We could not find that product. <a href="products.html">Browse all products</a> instead.</p>';
-      return;
-    }
-
-    document.title = product.name + ' — Stride';
-
-    var hero = document.querySelector('[data-detail-hero]');
-    if (hero) {
-      var heroStats = statsMarkup(product.stats);
-      var sizeLine = product.sizes
-        ? '<span class="detail-chip">Sizes ' + esc(product.sizes.join(', ')) + '</span>'
-        : '';
-      hero.innerHTML =
-        '<span class="page-hero__eyebrow">' +
-          '<span class="hero__eyebrow-dot" aria-hidden="true"></span>' +
-          esc(product.brand) + ' · ' + esc(product.category) +
-        '</span>' +
-        '<h1 class="page-hero__title">' + esc(product.name) + '</h1>' +
-        '<div class="page-hero__lede">' + esc(product.lede) + '</div>' +
-        '<div class="page-hero__rating">' + ratingMarkup(product) + '</div>' +
-        '<div class="page-hero__price">' + formatRupees(product.price) +
-          (product.compareAt ? '<s class="page-hero__price-old">' + formatRupees(product.compareAt) + '</s>' : '') +
-        '</div>' +
-        '<div class="page-hero__chips">' +
-          sizeLine +
-          (product.badge === 'new' ? '<span class="detail-chip detail-chip--accent">New arrival</span>' : '') +
-        '</div>' +
-        '<div class="page-hero__ctas">' +
-          '<a href="../index.html#shop" class="btn btn--primary">Shop the collection <span aria-hidden="true">→</span></a>' +
-          '<a href="contact.html" class="btn btn--ghost">Ask a fitter</a>' +
-        '</div>' +
-        (heroStats ? '<div class="page-hero__stats">' + heroStats + '</div>' : '');
-    }
-
-    var heroImg = document.querySelector('[data-detail-hero-image]');
-    if (heroImg) {
-      heroImg.innerHTML =
-        '<img src="' + esc(product.image) + '" alt="' + esc(product.imageAlt) + '" loading="eager" decoding="async" />';
-    }
-
-    var features = document.querySelector('[data-detail-features]');
-    if (features) features.innerHTML = featuresMarkup(product.features);
-
-    var specs = document.querySelector('[data-detail-specs]');
-    if (specs) specs.innerHTML = specsMarkup(product.specs);
-
-    var faqs = document.querySelector('[data-detail-faqs]');
-    if (faqs) {
-      faqs.innerHTML = faqMarkup(product.faqs);
-      if (window.StrideAccordion) window.StrideAccordion(faqs);
-    }
-
-    var related = document.querySelector('[data-detail-related]');
-    if (related) related.innerHTML = relatedMarkup(product.related);
-
-    var name = document.querySelector('[data-detail-name]');
-    if (name) name.textContent = product.name;
-
-    if (window.StrideReveal) window.StrideReveal();
-  }
-
-  /* -----------------------------------------------------------------------
      Boot
      ----------------------------------------------------------------------- */
   function init() {
+    if (window.StrideCart) {
+      window.StrideCart.setResolver(function (id) {
+        return DATA.getProduct(id);
+      });
+    }
     initProductList();
-    initProductDetails();
   }
 
   if (document.readyState === 'loading') {

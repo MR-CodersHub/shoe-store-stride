@@ -7,7 +7,7 @@ var STRIDE_DATA = (function () {
   'use strict';
 
   /* ----------------------------------------------------------------------
-     PRODUCTS — rendered on products.html and product-details.html?id=...
+     PRODUCTS — rendered on products.html; "View details" opens a quick-view
      ---------------------------------------------------------------------- */
   var PRODUCTS = [
     {
@@ -33,14 +33,7 @@ var STRIDE_DATA = (function () {
         { value: '8 mm', label: 'heel-toe drop' },
         { value: '4.8★', label: 'from 214 reviews' }
       ],
-      features: [
-        { title: 'Gel in the heel', text: 'Impact-absorption gel under the heel softens every foot strike.' },
-        { title: 'FF Blast foam', text: 'The midsole returns energy instead of absorbing it on the way out.' },
-        { title: 'Engineered mesh', text: 'Breathable, flexible upper that locks the midfoot without pressure.' },
-        { title: 'AHAR outsole', text: 'High-abrasion rubber on the heel for long-wear durability.' },
-        { title: 'Wide widths', text: 'Available in standard, wide and extra-wide fittings.' },
-        { title: '30-day run guarantee', text: 'Not the shoe for you? Run 30 days in them and swap them free.' }
-      ],
+     
       specs: [
         { title: 'Upper', text: 'Engineered air-mesh with synthetic overlays' },
         { title: 'Midsole', text: 'FF Blast foam + rearfoot gel' },
@@ -78,13 +71,6 @@ var STRIDE_DATA = (function () {
         { value: '2.1 oz', label: 'leather per pair' },
         { value: '60+', label: 'easy-to-wear fits' },
         { value: '4.6★', label: 'from 342 reviews' }
-      ],
-      features: [
-        { title: 'Full-grain leather', text: 'Soft, structured upper that moulds to your foot over the first wears.' },
-        { title: 'Classic gum sole', text: 'Flexible cupsole with a timeless contrast finish.' },
-        { title: 'Padded collar', text: 'A plush ankle collar for all-day comfort, no break-in bruising.' },
-        { title: 'Easy care', text: 'A damp cloth brings it back — no suede brushes or sprays needed.' },
-        { title: 'Low profile', text: 'Sits close to the ground for a clean, understated silhouette.' }
       ],
       specs: [
         { title: 'Upper', text: 'Full-grain leather' },
@@ -124,13 +110,7 @@ var STRIDE_DATA = (function () {
         { value: '10 mm', label: 'heel-toe drop' },
         { value: '4.7★', label: 'from 188 reviews' }
       ],
-      features: [
-        { title: 'Knit upper', text: 'A seamless stretchy knit that adapts to your foot shape as you run.' },
-        { title: 'Full-length foam', text: 'One-piece midsole for a soft, uninterrupted ride on every step.' },
-        { title: 'Heel pull-tab', text: 'Easy one-hand entry — no more struggling with the collar.' },
-        { title: 'Reflective details', text: 'Low-light visibility for early morning or evening runs.' },
-        { title: 'Everyday durability', text: 'A tougher toe cap and heel clip where daily runners wear first.' }
-      ],
+     
       specs: [
         { title: 'Upper', text: 'Stretch knit with reflective trim' },
         { title: 'Midsole', text: 'Full-length foam' },
@@ -169,13 +149,7 @@ var STRIDE_DATA = (function () {
         { value: 'Waterproof', label: 'full leather upper' },
         { value: '4.9★', label: 'from 97 reviews' }
       ],
-      features: [
-        { title: 'Waterproof leather', text: 'Seam-sealed full-grain leather keeps monsoon rain out.' },
-        { title: 'Lug outsole', text: 'Deep traction lugs grip wet stone, mud and smooth metro floors alike.' },
-        { title: 'Cushion footbed', text: 'A shock-absorbing footbed made for long shifts and long walks.' },
-        { title: 'Reinforced toe', text: 'Protection where boots scuff first, without a bulky steel look.' },
-        { title: 'Ankle support', text: 'A higher cut with a padded collar for confident footing on trails.' }
-      ],
+     
       specs: [
         { title: 'Upper', text: 'Waterproof full-grain leather' },
         { title: 'Outsole', text: 'Deep-lug rubber' },
@@ -214,13 +188,7 @@ var STRIDE_DATA = (function () {
         { value: '6 mo', label: 're-size check due' },
         { value: '4.5★', label: 'from 420 reviews' }
       ],
-      features: [
-        { title: 'Elastic slip-on', text: 'Two-way stretch collar and a pull-tab — no laces to tie in the morning rush.' },
-        { title: 'Wide toe box', text: 'Room for growing toes; less rubbing, fewer complaints.' },
-        { title: 'Scuff cap', text: 'A hardened toe that survives corridors, gates and gravel.' },
-        { title: 'Washable lining', text: 'Machine-washable sock lining for the aftermath of rainy-day play.' },
-        { title: 'Growing-feet scan', text: 'Pair it with a free in-store scan and we re-size every 6 months.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Smooth leather with elastic gore' },
         { title: 'Sole', text: 'Flexible, non-marking rubber' },
@@ -259,13 +227,7 @@ var STRIDE_DATA = (function () {
         { value: '6 mm', label: 'low-drop platform' },
         { value: '4.4★', label: 'from 156 reviews' }
       ],
-      features: [
-        { title: 'Snappy plate', text: 'A stiff foam plate propels you forward on every push-off.' },
-        { title: 'Lightweight mesh', text: 'A breathable one-piece upper that disappears on foot.' },
-        { title: 'Low-drop', text: '6 mm drop keeps you closer to the ground for better ground feel.' },
-        { title: 'Court-ready sole', text: 'Flat, grippy outsole that bites on gym floors and hard courts.' },
-        { title: 'Speed lacing', text: 'Low-profile lacing system locks the midfoot without pressure points.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Engineered mesh' },
         { title: 'Midsole', text: 'Foam with propulsion plate' },
@@ -304,13 +266,7 @@ var STRIDE_DATA = (function () {
         { value: '6 mo', label: 'comfort guarantee' },
         { value: '4.6★', label: 'from 512 reviews' }
       ],
-      features: [
-        { title: 'Memory-foam insole', text: 'Moulds to your foot for pressure-relieving comfort from the first step.' },
-        { title: 'Breathable knit', text: 'A flexible mesh upper that lets air move on warm days.' },
-        { title: 'Flex outsole', text: 'Grooved rubber bends with your foot for a natural walking gait.' },
-        { title: 'Machine washable', text: 'Throw them in the wash bag when the commute takes its toll.' },
-        { title: 'Wide widths', text: 'Available in standard and wide for most sizes.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Breathable knit mesh' },
         { title: 'Insole', text: 'Memory foam, removable' },
@@ -349,12 +305,7 @@ var STRIDE_DATA = (function () {
         { value: 'Suede', label: 'premium upper' },
         { value: '4.7★', label: 'from 268 reviews' }
       ],
-      features: [
-        { title: 'Premium suede', text: 'Soft, brushed suede panels over breathable mesh.' },
-        { title: 'Classic wedge sole', text: 'The original ENCAP cushioning keeps the retro ride.' },
-        { title: 'Heritage details', text: 'Bone lace eyelets and tonal embroidery from the archives.' },
-        { title: 'Goes anywhere', text: 'The pair that works with jeans, chinos and smart-casual office fits.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Suede and mesh' },
         { title: 'Midsole', text: 'ENCAP wedge cushioning' },
@@ -392,12 +343,7 @@ var STRIDE_DATA = (function () {
         { value: 'Cloud', label: 'compression sole' },
         { value: '4.8★', label: 'from 143 reviews' }
       ],
-      features: [
-        { title: 'Cloud sole', text: 'Hollow pods absorb impact and return energy on every stride.' },
-        { title: 'Speedboard', text: 'A nylon plate transfers power from heel to toe for a snappier push-off.' },
-        { title: 'Star-lacing', text: 'A low-bulk lacing system that locks the midfoot without pressure.' },
-        { title: 'Reflective loops', text: 'Subtle reflective details for dawn and dusk visibility.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Engineered mesh with synthetic overlay' },
         { title: 'Midsole', text: 'Cloud pods + Speedboard' },
@@ -435,13 +381,7 @@ var STRIDE_DATA = (function () {
         { value: 'Waterproof', label: 'sealed membrane' },
         { value: '4.9★', label: 'from 81 reviews' }
       ],
-      features: [
-        { title: 'Quicklace system', text: 'A single-pull lace that locks in seconds — no double knots mid-trail.' },
-        { title: 'Sealed membrane', text: 'A thin waterproof layer keeps feet dry without the bulk of a boot.' },
-        { title: '5 mm lugs', text: 'Aggressive traction that bites into mud, scree and wet rock.' },
-        { title: 'Protective toe cap', text: 'Reinforced bumper guards against roots and stones.' },
-        { title: 'Quick-dry lining', text: 'Drains and dries fast after stream crossings or rain.' }
-      ],
+      
       specs: [
         { title: 'Upper', text: 'Waterproof membrane over mesh' },
         { title: 'Midsole', text: 'EVA cushioning' },
@@ -479,12 +419,7 @@ var STRIDE_DATA = (function () {
         { value: 'Stable', label: 'wide forefoot platform' },
         { value: '4.5★', label: 'from 337 reviews' }
       ],
-      features: [
-        { title: 'Stable base', text: 'A wide, low-to-the-ground platform for lifting heavy without wobble.' },
-        { title: 'Heel cushioning', text: 'Responsive foam under the heel for box jumps and HIIT landings.' },
-        { title: 'Lateral support', text: 'Reinforced sidewalls hold your foot during side lunges and court moves.' },
-        { title: 'Flex grooves', text: 'Forefoot grooves let the shoe bend where your foot does.' }
-      ],
+    
       specs: [
         { title: 'Upper', text: 'Mesh with reinforced cage' },
         { title: 'Midsole', text: 'EVA with heel foam' },

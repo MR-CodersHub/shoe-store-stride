@@ -167,10 +167,10 @@
     '</footer>';
 
   /* -----------------------------------------------------------------------
-     Cart drawer markup (injected only on the shop landing page)
+     Cart drawer markup (injected on every page — shared by js/main.js)
      ----------------------------------------------------------------------- */
-  var drawerHTML = isIndex
-    ? '<div class="drawer" data-cart-drawer hidden>' +
+  var drawerHTML =
+    '<div class="drawer" data-cart-drawer hidden>' +
     '<div class="drawer__overlay" data-drawer-close></div>' +
     '<aside class="drawer__panel" role="dialog" aria-label="Shopping cart">' +
     '<header class="drawer__header">' +
@@ -191,8 +191,7 @@
     '<button class="btn btn--primary btn--block" type="button" data-drawer-checkout>Checkout <span aria-hidden="true">→</span></button>' +
     '</footer>' +
     '</aside>' +
-    '</div>'
-    : '';
+    '</div>';
 
   /* -----------------------------------------------------------------------
      Inject

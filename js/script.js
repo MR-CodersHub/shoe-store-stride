@@ -28,7 +28,6 @@
     category: 'all',
     sort: 'featured',
     query: '',
-    cart: [], // [{ id, qty }]
     wishlist: new Set(),
   };
 
@@ -117,18 +116,20 @@
       )
       .join('');
 
+    const fallbackUrl = `pages/products.html`;
+
     return `
       <article class="product-card" data-product-id="${p.id}">
-        <div class="product-card__media">
+        <a class="product-card__media" href="${fallbackUrl}" data-quickview="${p.id}">
           ${badge}
           <button class="product-card__wish ${wishActive}" type="button" data-wish="${p.id}" aria-label="Add ${p.name} to wishlist" aria-pressed="${wishActive ? 'true' : 'false'}">
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           </button>
           <img src="${p.image}" alt="${p.brand} ${p.name} in colour" loading="lazy" decoding="async" />
-        </div>
+        </a>
         <div class="product-card__body">
           <span class="product-card__brand">${p.brand}</span>
-          <h3 class="product-card__name">${p.name}</h3>
+          <h3 class="product-card__name"><a href="${fallbackUrl}" data-quickview="${p.id}">${p.name}</a></h3>
           <div class="product-card__colors" aria-label="Available colours">${swatches}</div>
           <div class="product-card__price-row">
             <span class="product-card__price">${formatRupees(p.price)}</span>
@@ -221,7 +222,7 @@
   }
 
   /* -----------------------------------------------------------------------
-       Add to cart + wishlist (event delegation on the grid)
+       Grid actions — quick view, add to cart, wishlist (delegated)
        ----------------------------------------------------------------------- */
   function initGridActions() {
     const grid = $('[data-product-grid]');
@@ -230,6 +231,7 @@
     grid.addEventListener('click', (e) => {
       const addBtn = e.target.closest('[data-add]');
       const wishBtn = e.target.closest('[data-wish]');
+      const quickBtn = e.target.closest('[data-quickview]');
 
       if (addBtn) {
         e.preventDefault();
@@ -239,22 +241,23 @@
         e.preventDefault();
         const id = wishBtn.getAttribute('data-wish');
         toggleWishlist(id, wishBtn);
+      } else if (quickBtn) {
+        e.preventDefault();
+        const id = quickBtn.getAttribute('data-quickview');
+        const product = state.catalog.find((p) => p.id === id);
+        if (product && window.StrideQuickView) {
+          window.StrideQuickView.open(product);
+        }
       }
     });
   }
 
   /* -----------------------------------------------------------------------
-       Cart state + header badge
+       Add to cart — shared drawer (StrideCart from js/main.js)
        ----------------------------------------------------------------------- */
   function addToCart(id, buttonEl) {
-    const existing = state.cart.find((c) => c.id === id);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      state.cart.push({ id, qty: 1 });
-    }
-    updateCartBadge();
-    renderDrawer();
+    if (!window.StrideCart) return;
+    window.StrideCart.add(id);
 
     // visual confirmation on the card
     if (buttonEl) {
@@ -266,32 +269,6 @@
         buttonEl.textContent = original;
       }, 1400);
     }
-  }
-
-  function removeFromCart(id) {
-    state.cart = state.cart.filter((c) => c.id !== id);
-    updateCartBadge();
-    renderDrawer();
-  }
-
-  function changeQty(id, delta) {
-    const item = state.cart.find((c) => c.id === id);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) {
-      removeFromCart(id);
-      return;
-    }
-    updateCartBadge();
-    renderDrawer();
-  }
-
-  function updateCartBadge() {
-    const count = state.cart.reduce((sum, c) => sum + c.qty, 0);
-    const badge = $('[data-cart-count]');
-    if (!badge) return;
-    badge.hidden = count === 0;
-    badge.textContent = count;
   }
 
   /* -----------------------------------------------------------------------
@@ -319,122 +296,6 @@
     if (!badge) return;
     badge.hidden = state.wishlist.size === 0;
     badge.textContent = state.wishlist.size;
-  }
-
-  /* -----------------------------------------------------------------------
-       Cart drawer
-       ----------------------------------------------------------------------- */
-  function renderDrawer() {
-    const items = $('[data-drawer-items]');
-    const subtotalEl = $('[data-drawer-subtotal]');
-    const countEl = $('[data-drawer-count]');
-    if (!items) return;
-
-    if (state.cart.length === 0) {
-      items.innerHTML = '<p class="drawer__empty">Your bag is empty. Add a pair to get started.</p>';
-      if (subtotalEl) subtotalEl.textContent = formatRupees(0);
-      if (countEl) countEl.textContent = '(0)';
-      return;
-    }
-
-    const lookup = (id) => state.catalog.find((p) => p.id === id);
-
-    items.innerHTML = state.cart
-      .map((line) => {
-        const p = lookup(line.id);
-        if (!p) return '';
-        const lineTotal = p.price * line.qty;
-        return `
-          <div class="drawer-item">
-            <img class="drawer-item__image" src="${p.image}" alt="" loading="lazy" />
-            <div>
-              <div class="drawer-item__brand">${p.brand}</div>
-              <div class="drawer-item__name">${p.name}</div>
-              <div class="drawer-item__qty" role="group" aria-label="Quantity for ${p.name}">
-                <button type="button" data-qty-dec="${p.id}" aria-label="Decrease quantity">−</button>
-                <span>${line.qty}</span>
-                <button type="button" data-qty-inc="${p.id}" aria-label="Increase quantity">+</button>
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div class="drawer-item__price">${formatRupees(lineTotal)}</div>
-              <button class="drawer-item__remove" type="button" data-remove="${p.id}">Remove</button>
-            </div>
-          </div>
-        `;
-      })
-      .join('');
-
-    const subtotal = state.cart.reduce((sum, line) => {
-      const p = lookup(line.id);
-      return sum + (p ? p.price * line.qty : 0);
-    }, 0);
-    if (subtotalEl) subtotalEl.textContent = formatRupees(subtotal);
-
-    const totalQty = state.cart.reduce((sum, c) => sum + c.qty, 0);
-    if (countEl) countEl.textContent = `(${totalQty})`;
-  }
-
-  function openDrawer() {
-    const drawer = $('[data-cart-drawer]');
-    if (!drawer) return;
-    drawer.hidden = false;
-    document.body.style.overflow = 'hidden';
-    renderDrawer();
-  }
-
-  function closeDrawer() {
-    const drawer = $('[data-cart-drawer]');
-    if (!drawer) return;
-    drawer.hidden = true;
-    document.body.style.overflow = '';
-  }
-
-  function initDrawer() {
-    $$('[data-cart-toggle]').forEach((btn) =>
-      btn.addEventListener('click', openDrawer)
-    );
-    $$('[data-drawer-close]').forEach((btn) =>
-      btn.addEventListener('click', closeDrawer)
-    );
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeDrawer();
-    });
-
-    const checkout = $('[data-drawer-checkout]');
-    if (checkout) {
-      checkout.addEventListener('click', () => {
-        if (state.cart.length === 0) {
-          alert('Your bag is empty.');
-          return;
-        }
-        const subtotal = state.cart.reduce((sum, line) => {
-          const p = state.catalog.find((c) => c.id === line.id);
-          return sum + (p ? p.price * line.qty : 0);
-        }, 0);
-        alert(
-          `Checkout placeholder\n\n${state.cart.reduce(
-            (n, c) => n + c.qty,
-            0
-          )} items · ${formatRupees(subtotal)}\n\n` +
-            'A real shop would now route to a payment flow.'
-        );
-      });
-    }
-
-    // Delegated handlers inside the drawer
-    const items = $('[data-drawer-items]');
-    if (items) {
-      items.addEventListener('click', (e) => {
-        const inc = e.target.closest('[data-qty-inc]');
-        const dec = e.target.closest('[data-qty-dec]');
-        const rem = e.target.closest('[data-remove]');
-        if (inc) changeQty(inc.getAttribute('data-qty-inc'), 1);
-        else if (dec) changeQty(dec.getAttribute('data-qty-dec'), -1);
-        else if (rem) removeFromCart(rem.getAttribute('data-remove'));
-      });
-    }
   }
 
   /* -----------------------------------------------------------------------
@@ -478,8 +339,13 @@
     initSort();
     initSearch();
     initGridActions();
-    initDrawer();
     initReveal();
+
+    if (window.StrideCart) {
+      window.StrideCart.setResolver(
+        (id) => state.catalog.find((p) => p.id === id) || null
+      );
+    }
   }
 
   if (document.readyState === 'loading') {
