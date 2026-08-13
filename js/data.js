@@ -433,6 +433,43 @@ var STRIDE_DATA = (function () {
         { q: 'Can I run in them?', a: 'Short treadmill warm-ups only. For running, pair with a dedicated runner.' }
       ],
       related: ['tempo-trainer', 'cloudrunner-5', 'sprint-light']
+    },
+    {
+      id: 'air-zoom-pulse',
+      name: 'Air Zoom Pulse',
+      brand: 'Nike',
+      category: 'Sports',
+      tagline: 'An ultra-responsive performance trainer engineered for agility.',
+      lede:
+        'Designed for high-intensity training, sprint intervals, and quick lateral moves. Zoom Air cushioning under the forefoot returns energy instantly on every strike.',
+      price: 7999,
+      compareAt: 9499,
+      badge: 'new',
+      rating: 4.9,
+      reviewCount: 168,
+      sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
+      colors: ['#0f172a', '#3b82f6', '#ffffff'],
+      image:
+        'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=900&auto=format&fit=crop',
+      imageAlt: 'Nike Air Zoom Pulse performance training shoe',
+      stats: [
+        { value: '9.4 oz', label: 'featherlight weight' },
+        { value: 'Zoom Air', label: 'forefoot cushion' },
+        { value: '4.9★', label: 'from 168 reviews' }
+      ],
+      specs: [
+        { title: 'Upper', text: 'Breathable engineered mesh with dynamic cage' },
+        { title: 'Midsole', text: 'Zoom Air forefoot unit + React foam' },
+        { title: 'Outsole', text: 'Multi-surface rubber tread' },
+        { title: 'Weight', text: '9.4 oz (US 9) · 6 mm drop' },
+        { title: 'Fit', text: 'True to size; responsive fit' },
+        { title: 'Warranty', text: '30-day trial + 14-day fit guarantee' }
+      ],
+      faqs: [
+        { q: 'Is this shoe good for sprint workouts?', a: 'Yes — the forefoot Zoom Air unit is specifically tuned for explosive energy return on sprints.' },
+        { q: 'Can I use it outdoors?', a: 'High-traction rubber outsole holds up on asphalt, track, and turf alike.' }
+      ],
+      related: ['cloudrunner-5', 'sprint-light', 'flex-gym']
     }
   ];
 

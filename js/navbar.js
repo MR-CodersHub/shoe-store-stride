@@ -91,10 +91,7 @@
 
     '<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile">' +
     mobileLinks +
-    '<a href="' + root + 'pages/home-2.html" class="mobile-nav__link">Home — performance</a>' +
     '<div class="mobile-nav__row">' +
-    '<button type="button" class="chip" data-theme-toggle>Dark / light mode</button>' +
-    '<button type="button" class="chip" data-rtl-toggle>RTL layout</button>' +
     '</div>' +
     '</nav>' +
     '</header>';

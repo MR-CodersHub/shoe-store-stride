@@ -157,6 +157,14 @@
     return wrap;
   }
 
+  function esc(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   function showToast(message, type) {
     var wrap = ensureToastWrap();
     var toast = document.createElement('div');
@@ -173,7 +181,54 @@
     }, 3800);
   }
 
+  function showOrderPlacedToast(order) {
+    var wrap = ensureToastWrap();
+    var toast = document.createElement('div');
+    toast.className = 'toast toast--order-placed';
+
+    var orderNum = 'STR-' + Math.floor(100000 + Math.random() * 900000);
+    var firstItemName = order.items && order.items[0] && order.items[0].name ? order.items[0].name : 'Shoe Store order';
+    var itemCountText = order.totalQty === 1 ? firstItemName : (order.totalQty + ' items');
+
+    toast.innerHTML =
+      '<div class="toast-order__header">' +
+        '<div class="toast-order__icon">' +
+          '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 4L12 14.01l-3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</div>' +
+        '<div class="toast-order__title-wrap">' +
+          '<strong class="toast-order__title">Order Placed</strong>' +
+          '<span class="toast-order__badge">Confirmed · #' + orderNum + '</span>' +
+        '</div>' +
+        '<button type="button" class="toast-order__close" aria-label="Close notification">&times;</button>' +
+      '</div>' +
+      '<div class="toast-order__body">' +
+        '<p class="toast-order__text">Your order for <strong>' + esc(itemCountText) + '</strong> (' + formatRupees(order.subtotal) + ') has been confirmed.</p>' +
+        '<div class="toast-order__meta">' +
+          '<span>Free Express Shipping</span>' +
+          '<span>Est. Delivery in 2–3 Days</span>' +
+        '</div>' +
+      '</div>';
+
+    wrap.appendChild(toast);
+
+    var closeBtn = toast.querySelector('.toast-order__close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        dismiss();
+      });
+    }
+
+    function dismiss() {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px) scale(0.95)';
+      setTimeout(function () { toast.remove(); }, 300);
+    }
+
+    setTimeout(dismiss, 7000);
+  }
+
   window.StrideToast = showToast;
+  window.StrideOrderPlacedToast = showOrderPlacedToast;
 
   /* -----------------------------------------------------------------------
      Shared cart — drawer, badge and persistence for every page
@@ -306,7 +361,27 @@
           var p = cartLookup(line.id);
           return sum + (p ? (Number(p.price) || 0) * line.qty : 0);
         }, 0);
-        showToast(totalQty + ' items · ' + formatRupees(subtotal) + ' — checkout placeholder.');
+
+        var purchasedItems = cartItems.map(function (line) {
+          var p = cartLookup(line.id);
+          return {
+            id: line.id,
+            qty: line.qty,
+            name: p ? p.name : 'Footwear',
+            price: p ? p.price : 0
+          };
+        });
+
+        showOrderPlacedToast({
+          totalQty: totalQty,
+          subtotal: subtotal,
+          items: purchasedItems
+        });
+
+        cartItems = [];
+        saveCart();
+        renderCart();
+        closeCart();
       });
     }
   }
@@ -397,7 +472,10 @@
       : '';
 
     var sizes = (p.sizes || []).length
-      ? p.sizes.map(function (s) { return '<span class="detail-chip">' + escHtml(s) + '</span>'; }).join('')
+      ? p.sizes.map(function (s, idx) {
+          var isSel = idx === 0 ? ' is-selected' : '';
+          return '<button type="button" class="detail-chip detail-chip--selectable' + isSel + '" data-size-chip="' + escHtml(s) + '" aria-pressed="' + (idx === 0 ? 'true' : 'false') + '">' + escHtml(s) + '</button>';
+        }).join('')
       : '<span class="detail-chip">One size</span>';
 
     var features = (p.features || []).slice(0, 3);
@@ -464,12 +542,31 @@
     });
 
     quickViewEl.addEventListener('click', function (e) {
+      var sizeBtn = e.target.closest('[data-size-chip]');
+      if (sizeBtn) {
+        var siblings = sizeBtn.parentElement.querySelectorAll('[data-size-chip]');
+        siblings.forEach(function (btn) {
+          btn.classList.remove('is-selected');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+        sizeBtn.classList.add('is-selected');
+        sizeBtn.setAttribute('aria-pressed', 'true');
+        return;
+      }
+
       var addBtn = e.target.closest('[data-modal-add]');
       if (!addBtn) return;
       var id = addBtn.getAttribute('data-modal-add');
       var product = cartLookup(id) || (window.STRIDE_DATA && window.STRIDE_DATA.getProduct(id));
+      
+      var selectedSizeEl = quickViewEl.querySelector('[data-size-chip].is-selected');
+      var selectedSize = selectedSizeEl ? selectedSizeEl.getAttribute('data-size-chip') : null;
+
       cartAdd(id);
-      showToast((product && product.name ? product.name : 'Item') + ' added to your bag.');
+
+      var sizeText = selectedSize ? ' (Size ' + selectedSize + ')' : '';
+      showToast((product && product.name ? product.name : 'Item') + sizeText + ' added to your bag.');
+
       addBtn.classList.add('is-added');
       addBtn.innerHTML = 'Added <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       setTimeout(function () {
