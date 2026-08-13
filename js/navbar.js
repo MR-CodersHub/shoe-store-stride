@@ -55,7 +55,7 @@
     '<header class="header" data-reveal>' +
     '<div class="header__inner">' +
     '<a href="' + root + 'index.html" class="brand" aria-label="Stride — home">' +
-    '<img src="' + root + 'assets/logo.png" alt="STRIDE Logo" class="brand__logo-img" style="height: 32px; width: auto; object-fit: contain; margin-right: 0.5rem;" />' +
+    '<img src="' + root + 'assets/logo.png" alt="STRIDE Logo" class="brand__logo-img" />' +
     '<span class="brand__word">STRIDE</span>' +
     '</a>' +
 
@@ -106,8 +106,8 @@
     '<footer class="footer">' +
     '<div class="footer__top">' +
     '<div class="footer__col footer__col--wide">' +
-    '<a href="' + root + 'index.html" class="brand footer__brand" aria-label="Stride — home" style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">' +
-    '<img src="' + root + 'assets/logo.png" alt="STRIDE Logo" class="brand__logo-img" style="height: 30px; width: auto; object-fit: contain; filter: brightness(0) invert(1);" />' +
+    '<a href="' + root + 'index.html" class="brand footer__brand" aria-label="Stride — home" style="margin-bottom: 1rem; display: inline-flex; align-items: center; text-decoration: none;">' +
+    '<img src="' + root + 'assets/logo.png" alt="STRIDE Logo" class="brand__logo-img" />' +
     '<span class="brand__word" style="color: #ffffff; font-weight: 800; font-size: 1.25rem; letter-spacing: 0.05em;">STRIDE</span>' +
     '</a>' +
     '<p>' +
