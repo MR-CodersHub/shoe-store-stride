@@ -1358,7 +1358,7 @@ html[data-theme='dark'] .chip.is-active .chip__count {
 }
 
 .product-card__badge--new {
-  background: var(--ink);
+  background: #000000;
 }
 
 .product-card__badge--sale {

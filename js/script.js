@@ -333,6 +333,8 @@
        ----------------------------------------------------------------------- */
   function init() {
     state.catalog = loadCatalog();
+    // Show only 8 products on home page
+    state.catalog = state.catalog.slice(0, 8);
     updateChipCounts();
     renderProducts();
     initFilter();
