@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stride — something new is coming. Join the list to hear it first."
+    />
+    <title>Coming soon — Stride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    
+    <link rel="icon" href="../assets/logo.png" />
+    <script>
+      try {
+        var t = localStorage.getItem('stride-theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var d = localStorage.getItem('stride-dir');
+        if (d) document.documentElement.setAttribute('dir', d);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- navbar.js injects the shared utility bar, header and footer here -->
+
+    <main id="top">
+      <!-- ===========================================================
+           COMING SOON HERO — countdown + subscribe
+           =========================================================== -->
+      <section class="soon-hero" aria-labelledby="soon-title" style="position:relative;overflow:hidden;">
+        <div class="page-hero__bg-media">
+          <img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&auto=format&fit=crop"
+            alt="The new Stride concept store and fitting studio design"
+            class="page-hero__bg-img"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="page-hero__bg-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="soon-hero__inner" data-reveal style="position:relative;z-index:2;">
+          <span class="small-caps promo-strip__eyebrow">Maintenance · September 2026</span>
+          <h1 id="soon-title" class="soon-hero__title">The new store is almost here.</h1>
+          <p class="soon-hero__lede">
+            We are rebuilding the fitting studio and the Run Lab for a
+            bigger, faster experience. Launches on:
+          </p>
+
+          <div class="countdown" data-countdown="2026-09-15T09:30:00" role="timer" aria-label="Time until launch">
+            <div class="cd-cell">
+              <div class="cd-num" data-cd-days>00</div>
+              <div class="cd-label">Days</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" data-cd-hours>00</div>
+              <div class="cd-label">Hours</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" data-cd-minutes>00</div>
+              <div class="cd-label">Minutes</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" data-cd-seconds>00</div>
+              <div class="cd-label">Seconds</div>
+            </div>
+          </div>
+
+          <form class="soon-sub" data-form novalidate>
+            <label class="visually-hidden" for="soon-email">Email address</label>
+            <input id="soon-email" type="email" name="email" placeholder="you@example.com — hear it first" required />
+            <button type="submit" class="btn btn--accent">Notify me <span aria-hidden="true">→</span></button>
+            <p class="promo-strip__done" data-form-success hidden style="color:rgba(241,245,249,0.9);">
+              You are on the list — see you at launch.
+            </p>
+          </form>
+
+          <p class="soon-hero__lede" style="font-size:var(--text-sm);">
+            Meanwhile, the shop is still open — orders are unaffected.
+          </p>
+        </div>
+      </section>
+
+      
+    </main>
+
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/data.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/form-validation.js" defer></script>
+  </body>
+</html>
