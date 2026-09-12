@@ -617,7 +617,6 @@ figure {
    -------------------------------------------------------------------------- */
 .hero--editorial {
   position: relative;
-  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
